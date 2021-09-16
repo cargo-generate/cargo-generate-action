@@ -1,0 +1,25 @@
+name: 'cargo-generate'
+description: 'Run cargo-generate'
+inputs:
+  name:
+    description: 'Name of the template expansion'
+    required: true
+  template:
+    description: 'URL or path to template repository'
+    required: false
+    default: '.'
+  branch:
+    description: '--branch argument'
+    required: false
+  subfolder:
+    description: '--subfolder argument'
+    required: false
+  template_values_file:
+    description: '--template-values-file argument'
+    required: false
+  other:
+    description: 'expanded to additional parameters! e.g. "-d foo=\"value1\" -d bar=\"value2\""'
+    required: false
+runs:
+  using: 'docker'
+  image: 'docker://jtvester/cargo-generate:latest'
