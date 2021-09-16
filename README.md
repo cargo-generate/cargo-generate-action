@@ -2,6 +2,8 @@
 
 This action is used to run the `cargo-generate` tool in order to expand a template.
 
+This is pushed to [docker hub cargogenerate/cargo-generate-action](https://hub.docker.com/r/cargogenerate/cargo-generate-action).
+
 ## Inputs
 
 ### `name`
@@ -53,7 +55,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: taurr/cargo-generate-action@v0.2
+      - uses: cargo-generate/cargo-generate-action@v1
         with:
           template: '.'
           subfolder: template
