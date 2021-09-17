@@ -40,11 +40,6 @@ jobs:
         with:
           context: .
           push: false
-          labels: |
-            rust
-            cargo
-            cargo-generate
-          tags: ${{env.DOCKERHUB_USER}}/${{env.DOCKERHUB_IMAGE}}:latest
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
         # This ugly bit is necessary if you don't want your cache to grow forever

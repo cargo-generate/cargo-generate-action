@@ -55,7 +55,7 @@ jobs:
     steps:
       - uses: actions/checkout@v2
 
-      - uses: cargo-generate/cargo-generate-action@v1
+      - uses: cargo-generate/cargo-generate-action@v0
         with:
           template: '.'
           subfolder: template
