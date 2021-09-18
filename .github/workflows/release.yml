@@ -19,12 +19,6 @@ jobs:
       # Check out code
       - name: Checkout
         uses: actions/checkout@v2
-      - name: Get version from tag
-        id: tag_name
-        run: |
-          echo ::set-output name=current_version::${GITHUB_REF#refs/tags/v}
-        shell: bash
-      # This is the a separate action that sets up buildx runner
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v1
       # So now you can use Actions' own caching!
@@ -35,6 +29,12 @@ jobs:
           key: ${{ runner.os }}-buildx-${{ github.sha }}
           restore-keys: |
             ${{ runner.os }}-buildx-
+      - name: Docker meta
+        id: meta
+        uses: docker/metadata-action@v3
+        with:
+          images: ${{env.DOCKERHUB_USER}}/${{env.DOCKERHUB_IMAGE}}
+          tags: type=semver,pattern={{version}}
       - name: Login to DockerHub
         uses: docker/login-action@v1
         with:
@@ -50,8 +50,7 @@ jobs:
             rust
             cargo
             cargo-generate
-          tags: |
-            type=semver,pattern={{version}}
+          tags: ${{ steps.meta.outputs.tags }}
           cache-from: type=local,src=/tmp/.buildx-cache
           cache-to: type=local,dest=/tmp/.buildx-cache-new
         # This ugly bit is necessary if you don't want your cache to grow forever
