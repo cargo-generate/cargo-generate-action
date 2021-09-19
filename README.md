@@ -57,7 +57,6 @@ jobs:
       - uses: cargo-generate/cargo-generate-action@v0.9.0
         with:
           name: ${{ env.PROJECT_NAME }}
-      - run: sudo chown -R runner:docker .
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
