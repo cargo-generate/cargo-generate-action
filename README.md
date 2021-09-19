@@ -48,22 +48,24 @@ on:
   push:
 
 jobs:
-  check-bats-version:
+  build:
     runs-on: ubuntu-latest
     env:
-      EXPANDED: mytemplate
+      PROJECT_NAME: mytemplate
     steps:
       - uses: actions/checkout@v2
-
-      - uses: cargo-generate/cargo-generate-action@v0
+      - uses: cargo-generate/cargo-generate-action@v0.9.0
         with:
-          template: '.'
-          subfolder: template
-          name: ${{ env.EXPANDED }}
+          name: ${{ env.PROJECT_NAME }}
       - run: sudo chown -R runner:docker .
-
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable
-      - run: cd $EXPANDED && cargo build --release
+      # we need to move the generated project to a temp folder, away from the template project
+      # otherwise `cargo` runs would fail 
+      # see https://github.com/rust-lang/cargo/issues/9922
+      - run: |
+          mv $PROJECT_NAME ${{ runner.temp }}/
+          cd ${{ runner.temp }}/$PROJECT_NAME
+          cargo build --release
 ```
