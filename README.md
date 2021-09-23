@@ -54,7 +54,7 @@ jobs:
       PROJECT_NAME: mytemplate
     steps:
       - uses: actions/checkout@v2
-      - uses: cargo-generate/cargo-generate-action@v0.10.0
+      - uses: cargo-generate/cargo-generate-action@v0.10.1
         with:
           name: ${{ env.PROJECT_NAME }}
       - uses: actions-rs/toolchain@v1
