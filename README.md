@@ -66,5 +66,5 @@ jobs:
       - run: |
           mv $PROJECT_NAME ${{ runner.temp }}/
           cd ${{ runner.temp }}/$PROJECT_NAME
-          cargo build --release
+          cargo check
 ```
