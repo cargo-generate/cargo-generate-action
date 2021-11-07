@@ -54,7 +54,7 @@ jobs:
       PROJECT_NAME: mytemplate
     steps:
       - uses: actions/checkout@v2
-      - uses: cargo-generate/cargo-generate-action@v0.10.1
+      - uses: cargo-generate/cargo-generate-action@v0.11.0
         with:
           name: ${{ env.PROJECT_NAME }}
       - uses: actions-rs/toolchain@v1
@@ -66,5 +66,5 @@ jobs:
       - run: |
           mv $PROJECT_NAME ${{ runner.temp }}/
           cd ${{ runner.temp }}/$PROJECT_NAME
-          cargo build --release
+          cargo check
 ```
