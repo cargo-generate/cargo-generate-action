@@ -30,6 +30,6 @@ cargo-generate generate\
     ${SUBFOLDER}\
     ${TEMPLATE_VALUES_FILE}\
     ${INPUT_OTHER[@]}\
-    --git ${TEMPLATE}\
+    --path ${TEMPLATE}\
     --name ${INPUT_NAME}\
     ${INPUT_SUBFOLDER}

@@ -5,7 +5,7 @@ inputs:
     description: 'Name of the template expansion'
     required: true
   template:
-    description: 'URL or path to template repository'
+    description: '--path argument'
     required: false
     default: '.'
   branch:
