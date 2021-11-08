@@ -14,7 +14,7 @@ This is the name of the project being expanded.
  
 ### `template`
 
-This is the URL/path to the repository holding the template. Defaults to `.`
+This is the path to the repository holding the template. Defaults to `.`
 
 ### `branch`
 
