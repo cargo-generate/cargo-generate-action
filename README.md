@@ -43,7 +43,7 @@ other: "--define foo=\"value\" --define bar=42"
 ## Example
 
 ```yml
-name: Try to expand local template using cargo-template
+name: Try to expand local template using cargo-generate
 on:
   push:
 
