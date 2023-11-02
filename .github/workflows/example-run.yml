@@ -1,0 +1,25 @@
+name: Demo the current cargo generate action
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      PROJECT_NAME: project-foo
+    steps:
+      - uses: actions/checkout@v4
+      - uses: cargo-generate/cargo-generate-action@latest
+        with:
+          name: ${{ env.PROJECT_NAME }}
+          template: test
+      - uses: actions-rs/toolchain@v1
+        with:
+          toolchain: stable
+      # we need to move the generated project to a temp folder, away from the template project
+      # otherwise `cargo` runs would fail
+      # see https://github.com/rust-lang/cargo/issues/9922
+      - run: |
+          mv $PROJECT_NAME ${{ runner.temp }}/
+          cd ${{ runner.temp }}/$PROJECT_NAME
+          cargo check
