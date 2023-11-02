@@ -8,18 +8,14 @@ inputs:
     description: '--path argument'
     required: false
     default: '.'
-  branch:
-    description: '--branch argument'
+  arguments:
+    description: "The arguments to pass to cargo-generate"
     required: false
-  subfolder:
-    description: '--subfolder argument'
-    required: false
-  template_values_file:
-    description: '--template-values-file argument'
-    required: false
-  other:
-    description: 'expanded to additional parameters! e.g. "-d foo=\"value1\" -d bar=\"value2\""'
-    required: false
+
 runs:
   using: 'docker'
-  image: 'docker://cargogenerate/cargo-generate-action:0.18.3'
+  image: 'Dockerfile'
+  args:
+    - --path ${{ inputs.template }}
+    - ${{ inputs.arguments }}
+    - ${{ inputs.name }}

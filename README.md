@@ -51,12 +51,13 @@ jobs:
   build:
     runs-on: ubuntu-latest
     env:
-      PROJECT_NAME: mytemplate
+      PROJECT_NAME: project-foo 
     steps:
       - uses: actions/checkout@v3
       - uses: cargo-generate/cargo-generate-action@v0.18
         with:
           name: ${{ env.PROJECT_NAME }}
+          arguments: --branch main
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable

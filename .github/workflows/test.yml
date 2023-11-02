@@ -1,0 +1,25 @@
+name: Test
+on: [push, pull_request]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    env:
+      PROJECT_NAME: test-template
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Build Docker image
+        run: docker build -t test-cargo-generate .
+
+      - name: Run list
+        run: docker run -v ${PWD}/test:/test test-cargo-generate --path /test --name ${{ env.PROJECT_NAME }}
+
+      - uses: dtolnay/rust-toolchain@stable
+      # we need to move the generated project to a temp folder, away from the template project
+      # otherwise `cargo` runs would fail
+      # see https://github.com/rust-lang/cargo/issues/9922
+      - run: |
+          mv ${PWD}/test/${{ env.PROJECT_NAME }} ${{ runner.temp }}/
+          cd ${{ runner.temp }}/$PROJECT_NAME
+          cargo check
