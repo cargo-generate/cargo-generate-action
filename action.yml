@@ -11,6 +11,7 @@ inputs:
   arguments:
     description: "The arguments to pass to cargo-generate"
     required: false
+    default: '--verbose'
 
 runs:
   using: 'docker'
