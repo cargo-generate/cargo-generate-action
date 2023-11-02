@@ -16,28 +16,16 @@ This is the name of the project being expanded.
 
 This is the path to the repository holding the template. Defaults to `.`
 
-### `branch`
+### `arguments`
 
-Branch for cloning the template.
+All other arguments that cargo-generate accepts
 
-### `subfolder`
-
-Subfolder within the template repository that'll be used as the template.
-
-### `template_values_file`
-
-Specifies a file holding the values required for template expansion.
-
-> NOTE: `cargo-generate` is being run with the `--silent` option, so it will fail if any values are undefined during expansion.
-
-### `other`
-
-This can be used to specify any other option for `cargo-generate`.
+> NOTE: `cargo-generate` runs with the `--silent` option, so it will fail if any values are undefined during expansion.
 
 Example:
 
 ```yml
-other: "--define foo=\"value\" --define bar=42"
+arguments: "--branch x --define foo=\"value\" --define bar=42"
 ```
 
 ## Example
@@ -54,10 +42,9 @@ jobs:
       PROJECT_NAME: project-foo 
     steps:
       - uses: actions/checkout@v3
-      - uses: cargo-generate/cargo-generate-action@v0.18
+      - uses: cargo-generate/cargo-generate-action@latest
         with:
           name: ${{ env.PROJECT_NAME }}
-          arguments: --branch main
       - uses: actions-rs/toolchain@v1
         with:
           toolchain: stable

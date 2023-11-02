@@ -13,7 +13,7 @@ jobs:
         run: docker build -t test-cargo-generate .
 
       - name: Run list
-        run: docker run -v ${PWD}/test:/test test-cargo-generate --path /test --name ${{ env.PROJECT_NAME }}
+        run: docker run -v ${PWD}/test:/test -w /test test-cargo-generate --path /test --name ${{ env.PROJECT_NAME }}
 
       - uses: dtolnay/rust-toolchain@stable
       # we need to move the generated project to a temp folder, away from the template project
