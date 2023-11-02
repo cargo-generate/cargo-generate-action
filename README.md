@@ -54,3 +54,5 @@ jobs:
           cd ${{ runner.temp }}/$PROJECT_NAME
           cargo check
 ```
+
+There is also a full example in this repo under [.github/workflows/example-run.yml](https://github.com/cargo-generate/cargo-generate-action/blob/main/.github/workflows/example-run.yml)
