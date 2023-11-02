@@ -5,7 +5,7 @@ inputs:
     description: 'Name of the template expansion'
     required: true
   template:
-    description: '--path argument'
+    description: this is passed to the `--path` argument
     required: false
     default: '.'
   arguments:
@@ -17,6 +17,7 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - --path ${{ inputs.template }}
+    - --path
+    - ${{ inputs.template }}
     - ${{ inputs.arguments }}
     - ${{ inputs.name }}
