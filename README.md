@@ -1,8 +1,6 @@
 # cargo-generate GitHub Action
 
-This action is used to run the `cargo-generate` tool in order to expand a template.
-
-This is pushed to [docker hub cargogenerate/cargo-generate-action](https://hub.docker.com/r/cargogenerate/cargo-generate-action).
+This action runs `cargo-generate` to expand a template.
 
 ## Inputs
 
@@ -41,7 +39,7 @@ jobs:
     env:
       PROJECT_NAME: project-foo 
     steps:
-      - uses: actions/checkout@v3
+      - uses: actions/checkout@v4
       - uses: cargo-generate/cargo-generate-action@latest
         with:
           name: ${{ env.PROJECT_NAME }}
