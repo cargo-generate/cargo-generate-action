@@ -14,7 +14,7 @@ This is the name of the project being expanded.
 
 This is the path to the repository holding the template. Defaults to `.`
 
-### `arguments`
+### `args`
 
 All other arguments that cargo-generate accepts
 
@@ -23,7 +23,7 @@ All other arguments that cargo-generate accepts
 Example:
 
 ```yml
-arguments: "--branch x --define foo=\"value\" --define bar=42"
+args: "--branch x --define foo=\"value\" --define bar=42"
 ```
 
 ## Example
