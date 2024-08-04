@@ -17,8 +17,6 @@ runs:
   using: 'docker'
   image: 'Dockerfile'
   args:
-    - --path
-    - ${{ inputs.template }}
+    - --path=${{ inputs.template }}
+    - --name=${{ inputs.name }}
     - ${{ inputs.arguments }}
-    - --name
-    - ${{ inputs.name }}

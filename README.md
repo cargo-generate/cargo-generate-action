@@ -23,7 +23,7 @@ All other arguments that cargo-generate accepts
 Example:
 
 ```yml
-arguments: "--branch x --define foo=\"value\" --define bar=42"
+arguments: "--branch x --define=foo=\"value\" --define=bar=42"
 ```
 
 ## Example
