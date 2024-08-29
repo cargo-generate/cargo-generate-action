@@ -7,4 +7,4 @@ if [ -z "$USER" ]; then
     export USER="runner"
 fi
 
-/usr/bin/cargo-generate generate --silent $*
+printf '%s\n' "generate --silent $*" | xargs /usr/bin/cargo-generate
